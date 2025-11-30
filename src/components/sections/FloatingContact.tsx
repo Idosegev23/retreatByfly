@@ -8,6 +8,7 @@ const WHATSAPP_NUMBER = "972545856695";
 const WHATSAPP_MESSAGE = encodeURIComponent(
   "היי, אני מתעניינת בריטריט 'תקווה ורודה' ואשמח לקבל פרטים נוספים"
 );
+const WEBHOOK_URL = "https://hook.eu2.make.com/ubkxdy8gry6axqwvg75vfm9kqoxpddvp";
 
 export function FloatingContact() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ export function FloatingContact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -30,18 +32,38 @@ export function FloatingContact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(false);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", phone: "", email: "", message: "" });
-    }, 3000);
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+          source: "תקווה ורודה - דף נחיתה",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({ name: "", phone: "", email: "", message: "" });
+        }, 3000);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
@@ -121,7 +143,31 @@ export function FloatingContact() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="glass rounded-3xl p-8 md:p-10 shadow-soft"
           >
-            {isSubmitted ? (
+            {error ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-12"
+              >
+                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-red-100 rounded-full">
+                  <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
+                <h3 className="font-cormorant text-2xl font-semibold text-text mb-2">
+                  אופס, משהו השתבש
+                </h3>
+                <p className="text-text-light mb-4">
+                  נסי שוב או שלחי הודעה בוואטסאפ
+                </p>
+                <button
+                  onClick={() => setError(false)}
+                  className="text-accent underline"
+                >
+                  נסי שוב
+                </button>
+              </motion.div>
+            ) : isSubmitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
