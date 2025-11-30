@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const journeySteps = [
@@ -58,22 +58,32 @@ const journeySteps = [
 
 export function HorizontalJourney() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Horizontal scroll animation - moves left as you scroll down
-  // 5 cards * 70vw = 350vw, need to move ~300% to see all
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-320%"]);
+  // Different scroll amounts for mobile vs desktop
+  // Mobile: 5 cards * 70vw = 350vw total, need to move ~280%
+  // Desktop: 5 cards * 30vw = 150vw total, need to move ~80%
+  const xMobile = useTransform(scrollYProgress, [0, 1], ["0%", "-280%"]);
+  const xDesktop = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section
       id="journey"
       ref={containerRef}
-      className="relative h-[600vh] md:h-[400vh]"
+      className="relative h-[500vh] md:h-[300vh]"
       style={{ backgroundColor: 'var(--nude-100)' }}
     >
       {/* Sticky container */}
@@ -109,7 +119,7 @@ export function HorizontalJourney() {
 
         {/* Horizontal scroll cards */}
         <motion.div
-          style={{ x }}
+          style={{ x: isMobile ? xMobile : xDesktop }}
           className="flex flex-row-reverse gap-4 md:gap-8 px-4 md:px-16"
         >
           {journeySteps.map((step, index) => (
