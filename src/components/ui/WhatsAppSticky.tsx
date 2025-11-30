@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const WHATSAPP_NUMBER = "972501234567"; // Replace with actual number
+const WHATSAPP_NUMBER = "972545856695";
 const WHATSAPP_MESSAGE = encodeURIComponent(
   "היי, אני מתעניינת בריטריט 'תקווה ורודה' ואשמח לקבל פרטים נוספים"
 );
