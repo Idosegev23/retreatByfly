@@ -4,6 +4,7 @@ import { ParallaxQuote } from "@/components/sections/ParallaxQuote";
 import { WhatWeDoSection } from "@/components/sections/WhatWeDoSection";
 import { InteractiveCards } from "@/components/sections/InteractiveCards";
 import { StickyTimeline } from "@/components/sections/StickyTimeline";
+import { PricingSection } from "@/components/sections/PricingSection";
 import { ImmersiveDetails } from "@/components/sections/ImmersiveDetails";
 import { FloatingContact } from "@/components/sections/FloatingContact";
 import { ClosingSection } from "@/components/sections/ClosingSection";
@@ -26,10 +27,13 @@ export default function Home() {
       {/* Interactive Cards - Who Is It For */}
       <InteractiveCards />
       
-      {/* Sticky Timeline - 5 Days */}
+      {/* Sticky Timeline - 4 Days */}
       <StickyTimeline />
       
-      {/* Immersive Details with Scroll Velocity */}
+      {/* Pricing */}
+      <PricingSection />
+      
+      {/* Immersive Details */}
       <ImmersiveDetails />
       
       {/* Contact Form */}

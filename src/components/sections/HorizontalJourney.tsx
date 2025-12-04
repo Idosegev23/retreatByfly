@@ -1,182 +1,101 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-const journeySteps = [
-  {
-    number: "01",
-    title: "סדנאות חוויתיות",
-    description: "סדנאות להעצמה והשראה מונחות על ידי מטפלת מוסמכת",
-    icon: (
-      <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
-  },
-  {
-    number: "02",
-    title: "זמן לעצמך",
-    description: "ספא, בריכה, שיזוף ומנוחה במלון 5 כוכבים",
-    icon: (
-      <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-    ),
-  },
-  {
-    number: "03",
-    title: "יציאה מהשגרה",
-    description: "שופינג, שייט ביאכטה וחוויות יוקרתיות",
-    icon: (
-      <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-      </svg>
-    ),
-  },
-  {
-    number: "04",
-    title: "טעינה רגשית",
-    description: "אוכל טוב, צחוק, חיבור וחברות עמוקה",
-    icon: (
-      <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-      </svg>
-    ),
-  },
+const journeyItems = [
+  "סדנאות חוויתיות להעצמה והשראה",
+  "זמן לעצמך - ספא, בריכה ומנוחה",
+  "יציאה מהשגרה - שייט וחוויות יוקרתיות",
+  "טעינה רגשית - אוכל טוב, צחוק וחיבור",
 ];
 
 export function HorizontalJourney() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Mobile: 4 cards * 75vw = 300vw total, need to scroll ~225vw to see last card
-  // Desktop: 4 cards * 40vw = 160vw total, need to scroll ~120vw
-  const xMobile = useTransform(scrollYProgress, [0, 1], ["0%", "-230%"]);
-  const xDesktop = useTransform(scrollYProgress, [0, 1], ["0%", "-120%"]);
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
     <section
       id="journey"
-      ref={containerRef}
-      className="relative h-[500vh] md:h-[250vh]"
+      ref={sectionRef}
+      className="relative py-20 md:py-28"
       style={{ backgroundColor: 'var(--nude-100)' }}
     >
-      {/* Sticky container */}
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-12 md:pt-0">
+      <div className="max-w-3xl mx-auto px-6 text-center">
         {/* Header */}
-        <div className="text-center px-4 mb-5 md:mb-8">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-[10px] md:text-xs font-medium tracking-widest uppercase"
-            style={{ color: 'var(--accent)' }}
-          >
-            המסע שלך
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl md:text-3xl lg:text-4xl font-semibold mt-2"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
-          >
-            מה מחכה לך בריטריט
-          </motion.h2>
-        </div>
-
-        {/* Progress bar - desktop only */}
-        <div className="hidden md:block absolute top-1/2 left-8 right-8 h-[1px]" style={{ backgroundColor: 'var(--nude-200)' }}>
-          <motion.div
-            className="h-full origin-right"
-            style={{ width: progressWidth, backgroundColor: 'var(--accent)' }}
-          />
-        </div>
-
-        {/* Mobile progress bar */}
-        <div className="md:hidden mx-auto mb-4 w-32 h-1 bg-nude-200 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full rounded-full"
-            style={{ width: progressWidth, backgroundColor: 'var(--accent)' }}
-          />
-        </div>
-
-        {/* Horizontal scroll cards */}
-        <motion.div
-          style={{ x: isMobile ? xMobile : xDesktop }}
-          className="flex flex-row-reverse gap-3 md:gap-5 px-4 md:px-12"
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="text-[10px] md:text-xs font-medium tracking-widest uppercase"
+          style={{ color: 'var(--accent)' }}
         >
-          {journeySteps.map((step, index) => (
+          המסע שלך
+        </motion.span>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1 }}
+          className="text-2xl md:text-4xl font-semibold mt-3 mb-12 md:mb-16"
+          style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
+        >
+          מה מחכה לך בריטריט
+        </motion.h2>
+
+        {/* Animated text items */}
+        <div className="space-y-6 md:space-y-8">
+          {journeyItems.map((item, index) => (
             <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="flex-shrink-0 w-[72vw] md:w-[35vw] lg:w-[28vw]"
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 + index * 0.15, duration: 0.6 }}
+              className="relative"
             >
-              <div 
-                className="relative h-full p-4 md:p-6 rounded-xl border"
+              {/* Number */}
+              <span 
+                className="absolute right-0 md:right-4 top-1/2 -translate-y-1/2 text-4xl md:text-6xl font-bold opacity-10"
+                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--accent)' }}
+              >
+                0{index + 1}
+              </span>
+              
+              {/* Text */}
+              <p 
+                className="text-lg md:text-2xl font-light pr-12 md:pr-20"
                 style={{ 
-                  backgroundColor: 'var(--nude-50)', 
-                  borderColor: 'var(--nude-200)',
-                  boxShadow: '0 4px 20px rgba(139, 115, 85, 0.08)'
+                  fontFamily: 'var(--font-cormorant), Georgia, serif', 
+                  color: 'var(--text)',
                 }}
               >
-                {/* Number */}
-                <span 
-                  className="absolute top-3 left-3 md:top-4 md:left-4 text-3xl md:text-5xl font-bold"
-                  style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--nude-200)' }}
-                >
-                  {step.number}
-                </span>
-                
-                {/* Icon */}
-                <div 
-                  className="relative z-10 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-xl mb-3 md:mb-4"
-                  style={{ backgroundColor: 'var(--pink-50)', color: 'var(--accent)' }}
-                >
-                  {step.icon}
-                </div>
-                
-                {/* Title */}
-                <h3 
-                  className="relative z-10 text-base md:text-lg font-semibold mb-1.5"
-                  style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
-                >
-                  {step.title}
-                </h3>
-                
-                {/* Description */}
-                <p className="relative z-10 leading-relaxed text-[11px] md:text-sm" style={{ color: 'var(--text-light)' }}>
-                  {step.description}
-                </p>
-              </div>
+                {item}
+              </p>
+              
+              {/* Divider line */}
+              {index < journeyItems.length - 1 && (
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={isInView ? { scaleX: 1 } : {}}
+                  transition={{ delay: 0.5 + index * 0.15, duration: 0.6 }}
+                  className="h-[1px] mt-6 md:mt-8 origin-right"
+                  style={{ backgroundColor: 'var(--nude-300)' }}
+                />
+              )}
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Scroll hint - mobile */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="text-center text-[10px] mt-4 md:hidden"
-          style={{ color: 'var(--text-light)' }}
+        {/* Decorative element */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 1, duration: 0.5 }}
+          className="mt-12 md:mt-16 flex justify-center"
         >
-          גללי למטה לראות עוד
-        </motion.p>
+          <div 
+            className="w-2 h-2 rounded-full"
+            style={{ backgroundColor: 'var(--accent)' }}
+          />
+        </motion.div>
       </div>
     </section>
   );
