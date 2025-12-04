@@ -85,10 +85,13 @@ export function StickyTimeline() {
     <section
       id="schedule"
       ref={containerRef}
-      className="relative bg-nude-50"
-      style={{ height: `${timelineData.length * 100}vh` }}
+      className="relative overflow-hidden"
+      style={{ 
+        height: `${timelineData.length * 100}vh`,
+        backgroundColor: 'var(--nude-50)',
+      }}
     >
-      {/* Dynamic background color based on active day */}
+      {/* Dynamic background color - contained in section */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeDay}
@@ -96,7 +99,7 @@ export function StickyTimeline() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-0 pointer-events-none"
+          className="absolute inset-0 z-0 pointer-events-none"
           style={{ 
             backgroundColor: dressCodeColors[activeDay as keyof typeof dressCodeColors]?.light || 'var(--nude-50)',
           }}
@@ -182,18 +185,9 @@ export function StickyTimeline() {
             index={index}
             setActiveDay={setActiveDay}
             dressCodeColor={dressCodeColors[day.day as keyof typeof dressCodeColors]}
+            isLast={index === timelineData.length - 1}
           />
         ))}
-      </div>
-
-      {/* Note at bottom */}
-      <div className="relative z-10 pb-8 text-center">
-        <p 
-          className="text-[9px] md:text-xs"
-          style={{ color: 'var(--text-light)' }}
-        >
-          * כל הסדנאות אופציונליות
-        </p>
       </div>
     </section>
   );
@@ -204,9 +198,10 @@ interface TimelineDayProps {
   index: number;
   setActiveDay: (day: number) => void;
   dressCodeColor: { bg: string; name: string; light: string; text: string };
+  isLast: boolean;
 }
 
-function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
+function TimelineDay({ day, setActiveDay, dressCodeColor, isLast }: TimelineDayProps) {
   const dayRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -223,15 +218,12 @@ function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.3, 1, 1, 0.3]);
   const scale = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.94, 1, 1, 0.94]);
 
-  // Last day needs extra bottom padding
-  const isLastDay = day.day === 4;
-
   return (
     <motion.div
       id={`day-${day.day}`}
       ref={dayRef}
       style={{ opacity, scale }}
-      className={`min-h-screen flex items-center pt-40 scroll-mt-36 md:pt-44 md:scroll-mt-40 ${isLastDay ? 'pb-32 md:pb-40' : 'pb-12 md:pb-16'}`}
+      className={`min-h-screen flex items-center pt-40 scroll-mt-36 md:pt-44 md:scroll-mt-40 pb-12 md:pb-16`}
     >
       <div className="max-w-xl mx-auto px-4 w-full">
         <div 
@@ -301,6 +293,16 @@ function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
               </motion.div>
             ))}
           </div>
+
+          {/* Note on last day's card */}
+          {isLast && (
+            <p 
+              className="text-[9px] md:text-xs mt-4 pt-3 border-t text-center"
+              style={{ color: 'var(--text-light)', borderColor: 'var(--nude-200)' }}
+            >
+              * כל הסדנאות אופציונליות
+            </p>
+          )}
         </div>
       </div>
     </motion.div>

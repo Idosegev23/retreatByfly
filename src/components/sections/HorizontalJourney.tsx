@@ -3,11 +3,49 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const journeyItems = [
-  "סדנאות חוויתיות להעצמה והשראה",
-  "זמן לעצמך - ספא, בריכה ומנוחה",
-  "יציאה מהשגרה - שייט וחוויות יוקרתיות",
-  "טעינה רגשית - אוכל טוב, צחוק וחיבור",
+const bentoItems = [
+  {
+    title: "סדנאות חוויתיות",
+    subtitle: "להעצמה והשראה",
+    size: "large", // spans 2 columns
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+      </svg>
+    ),
+  },
+  {
+    title: "זמן לעצמך",
+    subtitle: "ספא, בריכה ומנוחה",
+    size: "small",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </svg>
+    ),
+  },
+  {
+    title: "יציאה מהשגרה",
+    subtitle: "שייט וחוויות יוקרתיות",
+    size: "small",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M3 17L9 11L13 15L21 7" />
+        <path d="M14 7H21V14" />
+      </svg>
+    ),
+  },
+  {
+    title: "טעינה רגשית",
+    subtitle: "אוכל טוב, צחוק וחיבור",
+    size: "medium",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+    ),
+  },
 ];
 
 export function HorizontalJourney() {
@@ -18,84 +56,86 @@ export function HorizontalJourney() {
     <section
       id="journey"
       ref={sectionRef}
-      className="relative py-20 md:py-28"
+      className="relative py-16 md:py-24"
       style={{ backgroundColor: 'var(--nude-100)' }}
     >
-      <div className="max-w-3xl mx-auto px-6 text-center">
+      <div className="max-w-5xl mx-auto px-4">
         {/* Header */}
-        <motion.span
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-[10px] md:text-xs font-medium tracking-widest uppercase"
-          style={{ color: 'var(--accent)' }}
+          className="text-center mb-10 md:mb-14"
         >
-          המסע שלך
-        </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.1 }}
-          className="text-2xl md:text-4xl font-semibold mt-3 mb-12 md:mb-16"
-          style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
-        >
-          מה מחכה לך בריטריט
-        </motion.h2>
+          <span 
+            className="text-[10px] md:text-xs font-medium tracking-widest uppercase"
+            style={{ color: 'var(--accent)' }}
+          >
+            המסע שלך
+          </span>
+          <h2 
+            className="text-2xl md:text-4xl font-semibold mt-2"
+            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
+          >
+            מה מחכה לך בריטריט
+          </h2>
+        </motion.div>
 
-        {/* Animated text items */}
-        <div className="space-y-6 md:space-y-8">
-          {journeyItems.map((item, index) => (
+        {/* Bento Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {bentoItems.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3 + index * 0.15, duration: 0.6 }}
-              className="relative"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+              className={`
+                relative overflow-hidden rounded-2xl p-5 md:p-6
+                ${item.size === 'large' ? 'col-span-2 row-span-2 min-h-[200px] md:min-h-[280px]' : ''}
+                ${item.size === 'medium' ? 'col-span-2 min-h-[120px] md:min-h-[140px]' : ''}
+                ${item.size === 'small' ? 'col-span-1 min-h-[120px] md:min-h-[140px]' : ''}
+              `}
+              style={{ 
+                backgroundColor: index === 0 ? 'var(--accent)' : 'white',
+                border: index === 0 ? 'none' : '1px solid var(--nude-200)',
+              }}
             >
-              {/* Number */}
-              <span 
-                className="absolute right-0 md:right-4 top-1/2 -translate-y-1/2 text-4xl md:text-6xl font-bold opacity-10"
-                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--accent)' }}
+              {/* Icon */}
+              <div 
+                className={`mb-3 md:mb-4 ${item.size === 'large' ? 'mb-6' : ''}`}
+                style={{ color: index === 0 ? 'white' : 'var(--accent)' }}
               >
-                0{index + 1}
-              </span>
-              
-              {/* Text */}
-              <p 
-                className="text-lg md:text-2xl font-light pr-12 md:pr-20"
-                style={{ 
-                  fontFamily: 'var(--font-cormorant), Georgia, serif', 
-                  color: 'var(--text)',
-                }}
-              >
-                {item}
-              </p>
-              
-              {/* Divider line */}
-              {index < journeyItems.length - 1 && (
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={isInView ? { scaleX: 1 } : {}}
-                  transition={{ delay: 0.5 + index * 0.15, duration: 0.6 }}
-                  className="h-[1px] mt-6 md:mt-8 origin-right"
-                  style={{ backgroundColor: 'var(--nude-300)' }}
+                {item.icon}
+              </div>
+
+              {/* Content */}
+              <div className={item.size === 'large' ? 'absolute bottom-5 md:bottom-6 right-5 md:right-6 left-5 md:left-6' : ''}>
+                <h3 
+                  className={`font-semibold ${item.size === 'large' ? 'text-xl md:text-2xl' : 'text-sm md:text-base'}`}
+                  style={{ 
+                    fontFamily: 'var(--font-cormorant), Georgia, serif',
+                    color: index === 0 ? 'white' : 'var(--text)',
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p 
+                  className={`mt-1 ${item.size === 'large' ? 'text-sm md:text-base' : 'text-[11px] md:text-xs'}`}
+                  style={{ color: index === 0 ? 'rgba(255,255,255,0.8)' : 'var(--text-light)' }}
+                >
+                  {item.subtitle}
+                </p>
+              </div>
+
+              {/* Decorative element for large card */}
+              {item.size === 'large' && (
+                <div 
+                  className="absolute top-4 left-4 w-20 h-20 md:w-28 md:h-28 rounded-full opacity-10"
+                  style={{ backgroundColor: 'white' }}
                 />
               )}
             </motion.div>
           ))}
         </div>
-
-        {/* Decorative element */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="mt-12 md:mt-16 flex justify-center"
-        >
-          <div 
-            className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: 'var(--accent)' }}
-          />
-        </motion.div>
       </div>
     </section>
   );
