@@ -74,8 +74,12 @@ export function ImmersiveDetails() {
           style={{ x: marqueeX }}
         >
           <span 
-            className="text-[15vw] md:text-[12vw] font-bold opacity-[0.04]"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
+            className="text-[15vw] md:text-[12vw] font-bold"
+            style={{ 
+              fontFamily: 'var(--font-cormorant), Georgia, serif',
+              color: 'var(--accent)',
+              opacity: 0.12,
+            }}
           >
             תקווה ורודה ✦ תקווה ורודה ✦ תקווה ורודה
           </span>
