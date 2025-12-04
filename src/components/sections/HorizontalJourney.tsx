@@ -10,32 +10,24 @@ const bentoItems = [
     subtitle: "להעצמה והשראה",
     size: "large",
     image: "/img1.png",
-    objectFit: "cover",
-    scale: "scale-90", // zoom out
   },
   {
     title: "זמן לעצמך",
     subtitle: "ספא, בריכה ומנוחה",
     size: "small",
-    image: "/img4.png", // switched with img2
-    objectFit: "cover",
-    scale: "",
+    image: "/img2.png",
   },
   {
     title: "יציאה מהשגרה",
     subtitle: "שייט וחוויות יוקרתיות",
     size: "small",
     image: "/img3.png",
-    objectFit: "cover",
-    scale: "",
   },
   {
     title: "טעינה רגשית",
     subtitle: "אוכל טוב, צחוק וחיבור",
     size: "medium",
-    image: "/img2.png", // switched - now sunset
-    objectFit: "cover",
-    scale: "",
+    image: "/img4.png",
   },
 ];
 
@@ -72,25 +64,7 @@ export function HorizontalJourney() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 relative">
-          {/* Center "מושלם" text */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
-          >
-            <span 
-              className="text-4xl md:text-6xl font-bold text-white"
-              style={{ 
-                fontFamily: 'var(--font-cormorant), Georgia, serif',
-                textShadow: '0 2px 20px rgba(0,0,0,0.4), 0 4px 40px rgba(0,0,0,0.3)',
-              }}
-            >
-              מושלם
-            </span>
-          </motion.div>
-
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {bentoItems.map((item, index) => (
             <motion.div
               key={index}
@@ -105,19 +79,19 @@ export function HorizontalJourney() {
               `}
             >
               {/* Background Image */}
-              <div className={`absolute inset-0 ${item.scale}`}>
+              <div className="absolute inset-0">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className={`object-cover ${item.scale}`}
+                  className="object-cover"
                   sizes={item.size === 'large' ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
                 />
                 {/* Subtle gradient overlay for text readability */}
                 <div 
                   className="absolute inset-0"
                   style={{ 
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, transparent 100%)'
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)'
                   }}
                 />
               </div>
@@ -128,14 +102,14 @@ export function HorizontalJourney() {
                   className={`font-semibold text-white ${item.size === 'large' ? 'text-xl md:text-2xl' : 'text-sm md:text-base'}`}
                   style={{ 
                     fontFamily: 'var(--font-cormorant), Georgia, serif',
-                    textShadow: '0 2px 8px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.4)',
+                    textShadow: '0 1px 3px rgba(0,0,0,0.3)',
                   }}
                 >
                   {item.title}
                 </h3>
                 <p 
-                  className={`mt-0.5 text-white ${item.size === 'large' ? 'text-sm md:text-base' : 'text-[10px] md:text-xs'}`}
-                  style={{ textShadow: '0 1px 6px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.4)' }}
+                  className={`mt-0.5 text-white/85 ${item.size === 'large' ? 'text-sm md:text-base' : 'text-[10px] md:text-xs'}`}
+                  style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
                 >
                   {item.subtitle}
                 </p>
