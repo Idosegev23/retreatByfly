@@ -86,7 +86,7 @@ export function StickyTimeline() {
       id="schedule"
       ref={containerRef}
       className="relative"
-      style={{ height: `${timelineData.length * 120}vh` }}
+      style={{ height: `${timelineData.length * 100}vh` }}
     >
       {/* Dynamic background color based on active day */}
       <AnimatePresence mode="wait">
@@ -105,11 +105,11 @@ export function StickyTimeline() {
 
       {/* Sticky header - fixed at top with solid background */}
       <div 
-        className="sticky top-0 z-30 pt-4 md:pt-6 pb-4"
-        style={{ backgroundColor: 'rgba(253, 250, 247, 0.97)' }}
+        className="sticky top-0 z-30 pt-4 pb-4"
+        style={{ backgroundColor: 'rgba(253, 250, 247, 0.98)' }}
       >
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-4 md:mb-5">
+          <div className="text-center mb-3">
             <span 
               className="text-[10px] md:text-xs font-medium tracking-widest uppercase"
               style={{ color: 'var(--accent)' }}
@@ -117,7 +117,7 @@ export function StickyTimeline() {
               הלו״ז
             </span>
             <h2 
-              className="text-2xl md:text-4xl lg:text-5xl font-semibold mt-1"
+              className="text-xl md:text-3xl lg:text-4xl font-semibold mt-1"
               style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
             >
               4 ימים של קסם
@@ -136,7 +136,7 @@ export function StickyTimeline() {
                 className="relative flex flex-col items-center transition-all duration-300"
               >
                 <span 
-                  className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full text-sm md:text-lg font-bold transition-all duration-500 ${
+                  className={`w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-full text-xs md:text-base font-bold transition-all duration-500 ${
                     activeDay === day.day ? "scale-110 shadow-lg" : "opacity-60"
                   }`}
                   style={{ 
@@ -148,7 +148,7 @@ export function StickyTimeline() {
                   {day.day}
                 </span>
                 <span 
-                  className="text-[9px] md:text-[11px] mt-1.5 font-medium transition-opacity whitespace-nowrap"
+                  className="text-[8px] md:text-[10px] mt-1 font-medium transition-opacity whitespace-nowrap"
                   style={{ 
                     color: dressCodeColors[day.day as keyof typeof dressCodeColors]?.bg,
                     opacity: activeDay === day.day ? 1 : 0.5
@@ -161,7 +161,7 @@ export function StickyTimeline() {
           </div>
 
           {/* Progress bar */}
-          <div className="mt-4 h-1.5 bg-nude-200 rounded-full overflow-hidden max-w-xs md:max-w-md mx-auto">
+          <div className="mt-3 h-1 bg-nude-200 rounded-full overflow-hidden max-w-[200px] md:max-w-sm mx-auto">
             <motion.div
               className="h-full rounded-full"
               style={{ 
@@ -173,8 +173,8 @@ export function StickyTimeline() {
         </div>
       </div>
 
-      {/* Timeline content - with more top padding to clear header */}
-      <div className="relative z-10 pt-8">
+      {/* Timeline content - with scroll-margin to clear header */}
+      <div className="relative z-10">
         {timelineData.map((day, index) => (
           <TimelineDay
             key={day.day}
@@ -193,10 +193,10 @@ export function StickyTimeline() {
         className="sticky bottom-4 z-20 text-center px-4"
       >
         <p 
-          className="text-[10px] md:text-xs max-w-sm mx-auto bg-white/90 backdrop-blur-sm rounded-full py-2 px-4 shadow-sm"
+          className="text-[9px] md:text-xs max-w-sm mx-auto bg-white/90 backdrop-blur-sm rounded-full py-1.5 px-3 shadow-sm"
           style={{ color: 'var(--text-light)' }}
         >
-          * כל הסדנאות אופציונליות. התכנית נתונה לשינויים.
+          * כל הסדנאות אופציונליות
         </p>
       </motion.div>
     </section>
@@ -232,21 +232,21 @@ function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
       id={`day-${day.day}`}
       ref={dayRef}
       style={{ opacity, scale }}
-      className="min-h-screen flex items-center py-24 md:py-32"
+      className="min-h-screen flex items-center pt-44 pb-16 md:pt-48 md:pb-20 scroll-mt-44 md:scroll-mt-48"
     >
-      <div className="max-w-2xl mx-auto px-4 w-full">
+      <div className="max-w-xl mx-auto px-4 w-full">
         <div 
-          className="relative p-5 md:p-8 rounded-2xl shadow-xl"
+          className="relative p-4 md:p-6 rounded-2xl shadow-xl"
           style={{ 
             backgroundColor: 'white',
-            borderWidth: '3px',
+            borderWidth: '2px',
             borderStyle: 'solid',
             borderColor: dressCodeColor.bg,
           }}
         >
           {/* Day number badge */}
           <div 
-            className="absolute -top-4 right-4 md:right-8 px-4 py-2 rounded-full text-sm font-bold shadow-md"
+            className="absolute -top-3 right-4 md:right-6 px-3 py-1 rounded-full text-xs font-bold shadow-md"
             style={{ 
               backgroundColor: dressCodeColor.bg,
               color: 'white',
@@ -257,15 +257,15 @@ function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
           </div>
 
           {/* Header */}
-          <div className="mb-5 md:mb-6 mt-3">
+          <div className="mb-4 mt-2">
             <span 
-              className="text-xs md:text-sm font-semibold"
+              className="text-[10px] md:text-xs font-semibold"
               style={{ color: dressCodeColor.bg }}
             >
               {day.theme}
             </span>
             <h3 
-              className="text-xl md:text-3xl font-bold mt-1"
+              className="text-lg md:text-2xl font-bold mt-0.5"
               style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
             >
               {day.title}
@@ -273,7 +273,7 @@ function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
           </div>
 
           {/* Activities */}
-          <div className="space-y-2.5 md:space-y-3">
+          <div className="space-y-2">
             {day.activities.map((activity, actIndex) => (
               <motion.div
                 key={actIndex}
@@ -281,20 +281,20 @@ function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: actIndex * 0.03 }}
                 viewport={{ once: true }}
-                className="flex gap-2.5 md:gap-3 items-start group"
+                className="flex gap-2 items-start"
               >
                 <span 
-                  className="flex-shrink-0 w-[70px] md:w-[85px] text-[11px] md:text-sm font-bold"
+                  className="flex-shrink-0 w-[60px] md:w-[75px] text-[10px] md:text-xs font-bold"
                   style={{ color: dressCodeColor.text }}
                 >
                   {activity.time}
                 </span>
                 <div 
-                  className="flex-shrink-0 w-2 h-2 mt-1 md:mt-1.5 rounded-full"
+                  className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full"
                   style={{ backgroundColor: dressCodeColor.bg }}
                 />
                 <span 
-                  className="text-xs md:text-sm font-medium"
+                  className="text-[11px] md:text-sm"
                   style={{ color: 'var(--text)' }}
                 >
                   {activity.activity}
