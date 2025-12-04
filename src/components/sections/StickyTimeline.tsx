@@ -112,10 +112,10 @@ export function StickyTimeline() {
         style={{ background: 'linear-gradient(to bottom, transparent, var(--nude-100))' }}
       />
 
-      {/* Sticky header - fixed at top with solid background */}
+      {/* Sticky header - stays within section bounds */}
       <div 
-        className="sticky top-0 z-30 pt-4 pb-4"
-        style={{ backgroundColor: 'rgba(253, 250, 247, 0.98)' }}
+        className="sticky top-0 z-20 pt-4 pb-3 shadow-sm"
+        style={{ backgroundColor: 'rgba(253, 250, 247, 0.97)' }}
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-3">
