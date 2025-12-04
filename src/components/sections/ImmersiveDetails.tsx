@@ -106,7 +106,7 @@ export function ImmersiveDetails() {
               </div>
               <h3 
                 className="text-base md:text-xl font-bold mb-0.5"
-                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
+                style={{ color: 'var(--text)' }}
               >
                 {item.title}
               </h3>
