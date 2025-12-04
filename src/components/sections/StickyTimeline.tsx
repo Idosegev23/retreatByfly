@@ -186,19 +186,15 @@ export function StickyTimeline() {
         ))}
       </div>
 
-      {/* Note about workshops */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        className="sticky bottom-4 z-20 text-center px-4"
-      >
+      {/* Note about workshops - static at bottom of section */}
+      <div className="absolute bottom-8 left-0 right-0 text-center px-4 z-10">
         <p 
-          className="text-[9px] md:text-xs max-w-sm mx-auto bg-white/90 backdrop-blur-sm rounded-full py-1.5 px-3 shadow-sm"
+          className="text-[9px] md:text-xs max-w-sm mx-auto"
           style={{ color: 'var(--text-light)' }}
         >
           * כל הסדנאות אופציונליות
         </p>
-      </motion.div>
+      </div>
     </section>
   );
 }
