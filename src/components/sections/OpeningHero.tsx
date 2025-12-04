@@ -70,7 +70,7 @@ export function OpeningHero() {
             className="text-[10px] md:text-xs tracking-[0.25em] uppercase"
             style={{ color: 'var(--accent)' }}
           >
-            ריטריט נשים · העצמה נשית
+            ריטריט העצמה נשית
           </span>
         </motion.div>
 
