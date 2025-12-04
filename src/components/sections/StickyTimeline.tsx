@@ -85,7 +85,7 @@ export function StickyTimeline() {
     <section
       id="schedule"
       ref={containerRef}
-      className="relative overflow-hidden"
+      className="relative"
       style={{ 
         height: `${timelineData.length * 100}vh`,
         backgroundColor: 'var(--nude-50)',

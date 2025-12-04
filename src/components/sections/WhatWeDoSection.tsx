@@ -11,6 +11,7 @@ const highlights = [
       </svg>
     ),
     text: "מלון Rixos 5 כוכבים על החוף",
+    highlight: true,
   },
   {
     icon: (
@@ -51,6 +52,7 @@ const highlights = [
       </svg>
     ),
     text: "והמון פינוקים והפתעות",
+    highlight: true,
   },
 ];
 
@@ -61,15 +63,12 @@ export function WhatWeDoSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-14 md:py-20 overflow-hidden"
-      style={{ backgroundColor: 'var(--nude-100)' }}
+      className="relative py-16 md:py-24"
+      style={{ backgroundColor: 'white' }}
     >
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-nude-200/30 to-transparent pointer-events-none" />
-      
-      <div className="relative z-10 max-w-lg mx-auto px-4">
+      <div className="relative z-10 max-w-4xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-8 md:mb-10">
+        <div className="text-center mb-10 md:mb-14">
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -82,31 +81,40 @@ export function WhatWeDoSection() {
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-2xl md:text-3xl font-semibold mt-2"
+            className="text-2xl md:text-4xl font-semibold mt-2"
             style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
           >
             החבילה המושלמת
           </motion.h2>
         </div>
 
-        {/* Highlights list */}
-        <div className="space-y-2.5 md:space-y-3">
+        {/* Grid layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {highlights.map((highlight, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15 + index * 0.06 }}
-              className="flex items-center gap-3 p-3 md:p-3.5 rounded-xl bg-white/70 backdrop-blur-sm border border-nude-200/50"
+              className={`
+                flex flex-col items-center text-center p-4 md:p-6 rounded-2xl
+                ${highlight.highlight ? 'bg-gradient-to-br from-pink-50 to-nude-100' : 'bg-nude-50'}
+              `}
+              style={{ 
+                border: highlight.highlight ? '1px solid var(--accent)' : '1px solid var(--nude-200)',
+              }}
             >
               <div 
-                className="w-9 h-9 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center rounded-full"
-                style={{ backgroundColor: 'var(--pink-50)', color: 'var(--accent)' }}
+                className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full mb-3"
+                style={{ 
+                  backgroundColor: highlight.highlight ? 'var(--accent)' : 'white',
+                  color: highlight.highlight ? 'white' : 'var(--accent)',
+                }}
               >
                 {highlight.icon}
               </div>
               <span 
-                className="text-sm md:text-base font-medium"
+                className="text-xs md:text-sm font-medium leading-tight"
                 style={{ color: 'var(--text)' }}
               >
                 {highlight.text}
@@ -114,6 +122,15 @@ export function WhatWeDoSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="h-[1px] max-w-xs mx-auto mt-12 md:mt-16"
+          style={{ backgroundColor: 'var(--nude-300)' }}
+        />
       </div>
     </section>
   );
