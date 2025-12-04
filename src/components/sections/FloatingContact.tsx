@@ -6,7 +6,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const WHATSAPP_NUMBER = "972545856695";
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "היי, אני מתעניינת בריטריט 'תקווה ורודה' ואשמח לקבל פרטים נוספים"
+  "היי, אני מתעניינת בריטריט 'תקווה ורודה' באבו דאבי בפברואר 2026 ואשמח לקבל פרטים נוספים"
 );
 const WEBHOOK_URL = "https://hook.eu2.make.com/ubkxdy8gry6axqwvg75vfm9kqoxpddvp";
 
@@ -327,7 +327,7 @@ export function FloatingContact() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 <h4 className="font-semibold text-text">תאריך</h4>
-                <p className="text-text-light text-sm">ינואר 2026</p>
+                <p className="text-text-light text-sm">18-21.02.2026</p>
               </div>
             </div>
           </motion.div>
@@ -336,4 +336,3 @@ export function FloatingContact() {
     </section>
   );
 }
-

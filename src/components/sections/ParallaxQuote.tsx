@@ -53,7 +53,7 @@ export function ParallaxQuote() {
           <span className="text-text-light"> – </span>
           את חוזרת אליהם
           <br className="hidden md:block" />
-          <span className="text-accent">מחוברת ועוצמתית יותר</span>
+          <span className="text-pink-300">מחוברת ועוצמתית יותר</span>
           <span className="text-accent">&rdquo;</span>
         </blockquote>
 
@@ -78,4 +78,3 @@ export function ParallaxQuote() {
     </section>
   );
 }
-

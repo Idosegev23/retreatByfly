@@ -6,22 +6,22 @@ import { motion, useInView } from "framer-motion";
 const targetAudience = [
   {
     title: "להתמלא מחדש",
-    description: "לנשים שמרגישות שהן נותנות הרבה ומגיע להן זמן לעצמן",
+    description: "לעצור, לנשום ולתת לעצמך את הזמן שמגיע לך",
     gradient: "from-pink-50 to-nude-100",
   },
   {
     title: "לדייק כיוון",
-    description: "לנשים שרוצות להבין מה הן באמת רוצות ולאן הן הולכות",
+    description: "להבין מה את באמת רוצה ולאן את הולכת",
     gradient: "from-nude-200 to-pink-100",
   },
   {
     title: "להתחזק מבפנים",
-    description: "לנשים שרוצות לחזק את הביטחון והערך העצמי שלהן",
+    description: "לחזק את הביטחון והערך העצמי שלך",
     gradient: "from-pink-200/50 to-nude-200",
   },
   {
-    title: "להיזכר בעוצמה",
-    description: "לנשים שרוצות להתחבר מחדש לכוח הפנימי שלהן",
+    title: "לחזור ממגנטת ועוצמתית",
+    description: "לחזור הביתה עם אנרגיה חדשה וכוח פנימי",
     gradient: "from-nude-300 to-pink-100",
   },
 ];
@@ -148,7 +148,7 @@ export function InteractiveCards() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             className="text-accent text-sm font-medium tracking-wider uppercase"
           >
-            למי מתאים
+            ביחד נוכל
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -156,7 +156,7 @@ export function InteractiveCards() {
             transition={{ delay: 0.1 }}
             className="font-cormorant text-4xl md:text-5xl lg:text-6xl font-semibold text-text mt-4 mb-6"
           >
-            הריטריט הזה בשבילך אם את רוצה
+            מה תקבלי מהריטריט
           </motion.h2>
         </div>
 
@@ -170,4 +170,3 @@ export function InteractiveCards() {
     </section>
   );
 }
-

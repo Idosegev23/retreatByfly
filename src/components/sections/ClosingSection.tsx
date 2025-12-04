@@ -75,9 +75,9 @@ export function ClosingSection() {
           viewport={{ once: true }}
           className="text-xl text-text-light max-w-2xl mx-auto mb-12"
         >
-          5 ימים של חיבור, עומק והנאה מחכים לך.
+          4 ימים של חיבור, העצמה והנאה מחכים לך.
           <br />
-          מרחב בטוח, נשי ומעצים.
+          מרחב בטוח, נשי ויוקרתי.
         </motion.p>
 
         {/* CTA */}
@@ -92,7 +92,7 @@ export function ClosingSection() {
             href="#contact"
             className="px-10 py-5 bg-accent text-white font-medium rounded-full hover:bg-accent-light transition-colors shadow-medium text-xl"
           >
-            אני רוצה להצטרף
+            רוצה להצטרף
           </MagneticButton>
         </motion.div>
 
@@ -104,22 +104,22 @@ export function ClosingSection() {
           viewport={{ once: true }}
           className="mt-16 pt-8 border-t border-nude-300/30"
         >
-          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center text-text-light">
+          <div className="flex flex-wrap gap-4 md:gap-8 justify-center items-center text-text-light text-sm md:text-base">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent" />
               <span>אבו דאבי</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent" />
-              <span>ינואר 2026</span>
+              <span>18-21.02.2026</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-accent" />
+              <span>מלון Rixos 5 כוכבים</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent" />
               <span>קבוצה אינטימית</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent" />
-              <span>נשים בלבד</span>
             </div>
           </div>
         </motion.div>
@@ -140,12 +140,12 @@ export function ClosingSection() {
                 תקווה ורודה
               </h3>
               <p className="text-text-light text-sm mt-1">
-                ריטריט העצמה נשית
+                ריטריט נשים · העצמה נשית
               </p>
             </div>
             
             <p className="text-text-light/60 text-sm">
-              כל הזכויות שמורות 2025
+              הסדנאות מונחות על ידי מטפלת LI-CBT ומנטורית מוסמכת
             </p>
           </div>
         </div>
@@ -153,4 +153,3 @@ export function ClosingSection() {
     </motion.section>
   );
 }
-

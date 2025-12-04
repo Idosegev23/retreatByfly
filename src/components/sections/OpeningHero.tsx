@@ -78,7 +78,7 @@ export function OpeningHero() {
             className="text-xs md:text-sm tracking-[0.3em] uppercase"
             style={{ color: 'var(--accent)' }}
           >
-            ריטריט העצמה נשית
+            ריטריט נשים · העצמה נשית
           </span>
         </motion.div>
 
@@ -98,7 +98,7 @@ export function OpeningHero() {
           </motion.h1>
         </div>
         
-        <div className="overflow-hidden mb-12">
+        <div className="overflow-hidden mb-8">
           <motion.h1
             className="text-[15vw] md:text-[12vw] lg:text-[10vw] leading-[0.85] font-light tracking-tight"
             style={{ 
@@ -113,12 +113,23 @@ export function OpeningHero() {
           </motion.h1>
         </div>
 
-        {/* Elegant divider */}
-        <motion.div
-          className="flex items-center gap-4 mb-8"
+        {/* Subtitle */}
+        <motion.p
+          className="text-base md:text-lg font-light max-w-md mx-auto text-center mb-6"
+          style={{ color: 'var(--text-light)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.3 }}
+          transition={{ duration: 1, delay: 1.2 }}
+        >
+          רוגע והנאה בחוויה יוקרתית ומדויקת עבורך
+        </motion.p>
+
+        {/* Elegant divider */}
+        <motion.div
+          className="flex items-center gap-4 mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.4 }}
         >
           <div className="w-12 h-[1px]" style={{ backgroundColor: 'var(--nude-300)' }} />
           <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--pink-300)' }} />
@@ -127,21 +138,32 @@ export function OpeningHero() {
 
         {/* Details line */}
         <motion.p
-          className="text-sm md:text-base tracking-[0.15em]"
+          className="text-sm md:text-base tracking-[0.1em]"
           style={{ color: 'var(--text-light)' }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
-          אבו דאבי | ינואר 2026 | נשים בלבד
+          18-21.02.2026 | אבו דאבי | 3 לילות
+        </motion.p>
+
+        {/* Hotel info */}
+        <motion.p
+          className="text-xs md:text-sm tracking-[0.1em] mt-2"
+          style={{ color: 'var(--accent)' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+        >
+          מלון Rixos 5 כוכבים על החוף
         </motion.p>
 
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2 }}
-          className="mt-16"
+          transition={{ duration: 0.8, delay: 2.2 }}
+          className="mt-12"
         >
           <motion.a
             href="#contact"
@@ -184,17 +206,6 @@ export function OpeningHero() {
           animate={{ scaleY: [1, 0.5, 1], originY: 0 }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         />
-      </motion.div>
-
-      {/* Side accent line */}
-      <motion.div
-        className="absolute top-1/2 -translate-y-1/2 right-8 md:right-12 hidden md:block"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 1 }}
-        transition={{ duration: 1.5, delay: 1.5 }}
-        style={{ originY: 0.5 }}
-      >
-        <div className="w-[1px] h-32" style={{ backgroundColor: 'var(--nude-300)' }} />
       </motion.div>
     </section>
   );
