@@ -18,12 +18,12 @@ const timelineData = [
     theme: "נחיתה רגשית וחיבור לקבוצה ולעצמי",
     dressCode: "חום אדמה",
     activities: [
-      { time: "07:45", activity: "מפגש בנתב״ג" },
-      { time: "10:40", activity: "המראה" },
-      { time: "15:00-17:00", activity: "הגעה, קבלת חדרים והיכרות" },
-      { time: "18:00-20:00", activity: "ארוחת ערב מפוארת" },
-      { time: "20:00-21:30", activity: "מעגל פתיחה" },
-      { time: "21:30", activity: "הרמת כוסית וריקודים בחוף" },
+      { time: "07:45", activity: "מפגש בנתב״ג", isWorkshop: false },
+      { time: "10:40", activity: "המראה", isWorkshop: false },
+      { time: "15:00-17:00", activity: "הגעה, קבלת חדרים והיכרות", isWorkshop: false },
+      { time: "18:00-20:00", activity: "ארוחת ערב מפוארת", isWorkshop: false },
+      { time: "20:00-21:30", activity: "מעגל פתיחה", isWorkshop: true },
+      { time: "21:30", activity: "הרמת כוסית וריקודים בחוף", isWorkshop: false },
     ],
   },
   {
@@ -32,12 +32,12 @@ const timelineData = [
     theme: "הקשבה, השראה ונשימה",
     dressCode: "ים כחול",
     activities: [
-      { time: "08:00-09:00", activity: "ארוחת בוקר" },
-      { time: "09:30-10:30", activity: "יוגה / סאונד הילינג" },
-      { time: "11:00-16:00", activity: "זמן חופשי: ספא / צילומי תדמית בחוף" },
-      { time: "16:00-18:30", activity: "סדנת השראה חוויתית - הילדה הפנימית שבי" },
-      { time: "18:30-20:30", activity: "ארוחת ערב" },
-      { time: "20:00", activity: "שופינג ושחרור" },
+      { time: "08:00-09:00", activity: "ארוחת בוקר", isWorkshop: false },
+      { time: "09:30-10:30", activity: "יוגה / סאונד הילינג", isWorkshop: true },
+      { time: "11:00-16:00", activity: "זמן חופשי: ספא / צילומי תדמית בחוף", isWorkshop: false },
+      { time: "16:00-18:30", activity: "סדנת השראה חוויתית - הילדה הפנימית שבי", isWorkshop: true },
+      { time: "18:30-20:30", activity: "ארוחת ערב", isWorkshop: false },
+      { time: "20:00", activity: "שופינג ושחרור", isWorkshop: false },
     ],
   },
   {
@@ -46,12 +46,12 @@ const timelineData = [
     theme: "מטרות, חלומות וחזון",
     dressCode: "לבן טהור",
     activities: [
-      { time: "08:00-09:00", activity: "ארוחת בוקר" },
-      { time: "11:00-14:00", activity: "שייט ביאכטה" },
-      { time: "14:00-16:30", activity: "מנוחה בריכה וזמן בנות" },
-      { time: "16:30-18:30", activity: "סדנה בשקיעה - מגדלור מאיר את הדרך" },
-      { time: "19:00-21:00", activity: "קבלת שבת חגיגית" },
-      { time: "21:00-23:00", activity: "מסיבת פיג׳מות" },
+      { time: "08:00-09:00", activity: "ארוחת בוקר", isWorkshop: false },
+      { time: "11:00-14:00", activity: "שייט ביאכטה", isWorkshop: false },
+      { time: "14:00-16:30", activity: "מנוחה בריכה וזמן בנות", isWorkshop: false },
+      { time: "16:30-18:30", activity: "סדנה בשקיעה - מגדלור מאיר את הדרך", isWorkshop: true },
+      { time: "19:00-21:00", activity: "קבלת שבת חגיגית", isWorkshop: false },
+      { time: "21:00-23:00", activity: "מסיבת פיג׳מות", isWorkshop: false },
     ],
   },
   {
@@ -60,12 +60,12 @@ const timelineData = [
     theme: "קבלה, אהבה והודיה",
     dressCode: "חיוך ורוד",
     activities: [
-      { time: "08:30-09:30", activity: "ארוחת בוקר" },
-      { time: "10:00-13:00", activity: "סדנת סיכום - עפה על עצמי + מתנות" },
-      { time: "13:00", activity: "צ׳ק אאוט" },
-      { time: "13:00-16:00", activity: "שופינג ומנוחה" },
-      { time: "17:00", activity: "יציאה לשדה התעופה" },
-      { time: "20:30", activity: "המראה חזרה" },
+      { time: "08:30-09:30", activity: "ארוחת בוקר", isWorkshop: false },
+      { time: "10:00-13:00", activity: "סדנת סיכום - עפה על עצמי + מתנות", isWorkshop: true },
+      { time: "13:00", activity: "צ׳ק אאוט", isWorkshop: false },
+      { time: "13:00-16:00", activity: "שופינג ומנוחה", isWorkshop: false },
+      { time: "17:00", activity: "יציאה לשדה התעופה", isWorkshop: false },
+      { time: "20:30", activity: "המראה חזרה", isWorkshop: false },
     ],
   },
 ];
@@ -298,8 +298,8 @@ function TimelineDay({ day, setActiveDay, dressCodeColor, isLast }: TimelineDayP
                   style={{ backgroundColor: dressCodeColor.bg }}
                 />
                 <span 
-                  className="text-[11px] md:text-sm"
-                  style={{ color: 'var(--text)' }}
+                  className={`text-[11px] md:text-sm ${activity.isWorkshop ? 'font-bold' : ''}`}
+                  style={{ color: activity.isWorkshop ? dressCodeColor.bg : 'var(--text)' }}
                 >
                   {activity.activity}
                 </span>
