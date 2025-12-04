@@ -85,124 +85,121 @@ export function StickyTimeline() {
     <section
       id="schedule"
       ref={containerRef}
-      className="relative overflow-hidden"
-      style={{ 
-        height: `${timelineData.length * 100}vh`,
-        backgroundColor: 'var(--nude-50)',
-      }}
+      className="relative bg-nude-50"
+      style={{ height: `${timelineData.length * 100}vh` }}
     >
-      {/* Dynamic background color based on active day - contained within section */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeDay}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{ 
-            backgroundColor: dressCodeColors[activeDay as keyof typeof dressCodeColors]?.light || 'var(--nude-50)',
-          }}
-        />
-      </AnimatePresence>
-      
-      {/* Bottom gradient for clear separation */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, transparent, var(--nude-100))' }}
-      />
+      {/* Sticky container that holds header and cards */}
+      <div className="sticky top-0 h-screen flex flex-col">
+        {/* Dynamic background color based on active day */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeDay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="absolute inset-0 z-0 pointer-events-none"
+            style={{ 
+              backgroundColor: dressCodeColors[activeDay as keyof typeof dressCodeColors]?.light || 'var(--nude-50)',
+            }}
+          />
+        </AnimatePresence>
 
-      {/* Sticky header - stays within section bounds */}
-      <div 
-        className="sticky top-0 z-20 pt-4 pb-3 shadow-sm"
-        style={{ backgroundColor: 'rgba(253, 250, 247, 0.97)' }}
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-3">
-            <span 
-              className="text-[10px] md:text-xs font-medium tracking-widest uppercase"
-              style={{ color: 'var(--accent)' }}
-            >
-              הלו״ז
-            </span>
-            <h2 
-              className="text-xl md:text-3xl lg:text-4xl font-semibold mt-1"
-              style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
-            >
-              4 ימים של קסם
-            </h2>
-          </div>
-
-          {/* Day indicators with dress code */}
-          <div className="flex justify-center gap-2 md:gap-4">
-            {timelineData.map((day) => (
-              <button
-                key={day.day}
-                onClick={() => {
-                  const element = document.getElementById(`day-${day.day}`);
-                  element?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="relative flex flex-col items-center transition-all duration-300"
+        {/* Header */}
+        <div 
+          className="relative z-20 pt-4 pb-3"
+          style={{ backgroundColor: 'rgba(253, 250, 247, 0.95)' }}
+        >
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-3">
+              <span 
+                className="text-[10px] md:text-xs font-medium tracking-widest uppercase"
+                style={{ color: 'var(--accent)' }}
               >
-                <span 
-                  className={`w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-full text-xs md:text-base font-bold transition-all duration-500 ${
-                    activeDay === day.day ? "scale-110 shadow-lg" : "opacity-60"
-                  }`}
-                  style={{ 
-                    backgroundColor: dressCodeColors[day.day as keyof typeof dressCodeColors]?.bg,
-                    color: 'white',
-                    textShadow: day.day === 3 ? '0 1px 2px rgba(0,0,0,0.3)' : 'none'
-                  }}
-                >
-                  {day.day}
-                </span>
-                <span 
-                  className="text-[8px] md:text-[10px] mt-1 font-medium transition-opacity whitespace-nowrap"
-                  style={{ 
-                    color: dressCodeColors[day.day as keyof typeof dressCodeColors]?.bg,
-                    opacity: activeDay === day.day ? 1 : 0.5
-                  }}
-                >
-                  {day.dressCode}
-                </span>
-              </button>
-            ))}
-          </div>
+                הלו״ז
+              </span>
+              <h2 
+                className="text-xl md:text-3xl lg:text-4xl font-semibold mt-1"
+                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
+              >
+                4 ימים של קסם
+              </h2>
+            </div>
 
-          {/* Progress bar */}
-          <div className="mt-3 h-1 bg-nude-200 rounded-full overflow-hidden max-w-[200px] md:max-w-sm mx-auto">
-            <motion.div
-              className="h-full rounded-full"
-              style={{ 
-                width: progressWidth,
-                backgroundColor: dressCodeColors[activeDay as keyof typeof dressCodeColors]?.bg || 'var(--accent)'
-              }}
-            />
+            {/* Day indicators with dress code */}
+            <div className="flex justify-center gap-2 md:gap-4">
+              {timelineData.map((day) => (
+                <button
+                  key={day.day}
+                  onClick={() => {
+                    const element = document.getElementById(`day-${day.day}`);
+                    element?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="relative flex flex-col items-center transition-all duration-300"
+                >
+                  <span 
+                    className={`w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-full text-xs md:text-base font-bold transition-all duration-500 ${
+                      activeDay === day.day ? "scale-110 shadow-lg" : "opacity-60"
+                    }`}
+                    style={{ 
+                      backgroundColor: dressCodeColors[day.day as keyof typeof dressCodeColors]?.bg,
+                      color: 'white',
+                      textShadow: day.day === 3 ? '0 1px 2px rgba(0,0,0,0.3)' : 'none'
+                    }}
+                  >
+                    {day.day}
+                  </span>
+                  <span 
+                    className="text-[8px] md:text-[10px] mt-1 font-medium transition-opacity whitespace-nowrap"
+                    style={{ 
+                      color: dressCodeColors[day.day as keyof typeof dressCodeColors]?.bg,
+                      opacity: activeDay === day.day ? 1 : 0.5
+                    }}
+                  >
+                    {day.dressCode}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Progress bar */}
+            <div className="mt-3 h-1 bg-nude-200 rounded-full overflow-hidden max-w-[200px] md:max-w-sm mx-auto">
+              <motion.div
+                className="h-full rounded-full"
+                style={{ 
+                  width: progressWidth,
+                  backgroundColor: dressCodeColors[activeDay as keyof typeof dressCodeColors]?.bg || 'var(--accent)'
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Timeline content - with scroll-margin to clear header */}
-      <div className="relative z-10">
-        {timelineData.map((day, index) => (
-          <TimelineDay
-            key={day.day}
-            day={day}
-            index={index}
-            setActiveDay={setActiveDay}
-            dressCodeColor={dressCodeColors[day.day as keyof typeof dressCodeColors]}
-          />
-        ))}
-      </div>
+        {/* Cards container - centered */}
+        <div className="flex-1 flex items-center justify-center relative z-10 px-4">
+          {timelineData.map((day) => (
+            <TimelineDay
+              key={day.day}
+              day={day}
+              isActive={activeDay === day.day}
+              setActiveDay={setActiveDay}
+              dressCodeColor={dressCodeColors[day.day as keyof typeof dressCodeColors]}
+              scrollYProgress={scrollYProgress}
+              index={day.day - 1}
+              total={timelineData.length}
+            />
+          ))}
+        </div>
 
-      {/* Note about workshops - static at bottom of section */}
-      <div className="absolute bottom-8 left-0 right-0 text-center px-4 z-10">
-        <p 
-          className="text-[9px] md:text-xs max-w-sm mx-auto"
-          style={{ color: 'var(--text-light)' }}
-        >
-          * כל הסדנאות אופציונליות
-        </p>
+        {/* Note */}
+        <div className="relative z-10 pb-4 text-center">
+          <p 
+            className="text-[9px] md:text-xs"
+            style={{ color: 'var(--text-light)' }}
+          >
+            * כל הסדנאות אופציונליות
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -210,106 +207,112 @@ export function StickyTimeline() {
 
 interface TimelineDayProps {
   day: typeof timelineData[0];
-  index: number;
+  isActive: boolean;
   setActiveDay: (day: number) => void;
   dressCodeColor: { bg: string; name: string; light: string; text: string };
+  scrollYProgress: ReturnType<typeof useTransform<number, number>>;
+  index: number;
+  total: number;
 }
 
-function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
-  const dayRef = useRef<HTMLDivElement>(null);
+function TimelineDay({ day, isActive, setActiveDay, dressCodeColor, scrollYProgress, index, total }: TimelineDayProps) {
+  // Calculate visibility based on scroll
+  const start = index / total;
+  const end = (index + 1) / total;
+  
+  const opacity = useTransform(
+    scrollYProgress,
+    [start - 0.1, start, end - 0.1, end],
+    [0, 1, 1, 0]
+  );
+  
+  const scale = useTransform(
+    scrollYProgress,
+    [start - 0.1, start, end - 0.1, end],
+    [0.9, 1, 1, 0.9]
+  );
+  
+  const y = useTransform(
+    scrollYProgress,
+    [start - 0.1, start, end - 0.1, end],
+    [30, 0, 0, -30]
+  );
 
-  const { scrollYProgress } = useScroll({
-    target: dayRef,
-    offset: ["start center", "end center"],
-  });
-
+  // Update active day based on scroll position
   scrollYProgress.on("change", (value) => {
-    if (value > 0 && value < 1) {
+    if (value >= start && value < end) {
       setActiveDay(day.day);
     }
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.3, 1, 1, 0.3]);
-  const scale = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.94, 1, 1, 0.94]);
-
-  // Last day needs extra bottom padding
-  const isLastDay = day.day === 4;
-  
   return (
     <motion.div
       id={`day-${day.day}`}
-      ref={dayRef}
-      style={{ opacity, scale }}
-      className={`min-h-screen flex items-center pt-44 scroll-mt-44 md:pt-48 md:scroll-mt-48 ${isLastDay ? 'pb-40 md:pb-48' : 'pb-16 md:pb-20'}`}
+      style={{ opacity, scale, y }}
+      className={`absolute max-w-xl w-full ${isActive ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
-      <div className="max-w-xl mx-auto px-4 w-full">
+      <div 
+        className="p-4 md:p-6 rounded-2xl shadow-xl"
+        style={{ 
+          backgroundColor: 'white',
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: dressCodeColor.bg,
+        }}
+      >
+        {/* Day number badge */}
         <div 
-          className="relative p-4 md:p-6 rounded-2xl shadow-xl"
+          className="absolute -top-3 right-4 md:right-6 px-3 py-1 rounded-full text-xs font-bold shadow-md"
           style={{ 
-            backgroundColor: 'white',
-            borderWidth: '2px',
-            borderStyle: 'solid',
-            borderColor: dressCodeColor.bg,
+            backgroundColor: dressCodeColor.bg,
+            color: 'white',
+            textShadow: day.day === 3 ? '0 1px 2px rgba(0,0,0,0.3)' : 'none'
           }}
         >
-          {/* Day number badge */}
-          <div 
-            className="absolute -top-3 right-4 md:right-6 px-3 py-1 rounded-full text-xs font-bold shadow-md"
-            style={{ 
-              backgroundColor: dressCodeColor.bg,
-              color: 'white',
-              textShadow: day.day === 3 ? '0 1px 2px rgba(0,0,0,0.3)' : 'none'
-            }}
+          יום {day.day} · {day.dressCode}
+        </div>
+
+        {/* Header */}
+        <div className="mb-4 mt-2">
+          <span 
+            className="text-[10px] md:text-xs font-semibold"
+            style={{ color: dressCodeColor.bg }}
           >
-            יום {day.day} · {day.dressCode}
-          </div>
+            {day.theme}
+          </span>
+          <h3 
+            className="text-lg md:text-2xl font-bold mt-0.5"
+            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
+          >
+            {day.title}
+          </h3>
+        </div>
 
-          {/* Header */}
-          <div className="mb-4 mt-2">
-            <span 
-              className="text-[10px] md:text-xs font-semibold"
-              style={{ color: dressCodeColor.bg }}
+        {/* Activities */}
+        <div className="space-y-2">
+          {day.activities.map((activity, actIndex) => (
+            <div
+              key={actIndex}
+              className="flex gap-2 items-start"
             >
-              {day.theme}
-            </span>
-            <h3 
-              className="text-lg md:text-2xl font-bold mt-0.5"
-              style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
-            >
-              {day.title}
-            </h3>
-          </div>
-
-          {/* Activities */}
-          <div className="space-y-2">
-            {day.activities.map((activity, actIndex) => (
-              <motion.div
-                key={actIndex}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: actIndex * 0.03 }}
-                viewport={{ once: true }}
-                className="flex gap-2 items-start"
+              <span 
+                className="flex-shrink-0 w-[60px] md:w-[75px] text-[10px] md:text-xs font-bold"
+                style={{ color: dressCodeColor.text }}
               >
-                <span 
-                  className="flex-shrink-0 w-[60px] md:w-[75px] text-[10px] md:text-xs font-bold"
-                  style={{ color: dressCodeColor.text }}
-                >
-                  {activity.time}
-                </span>
-                <div 
-                  className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full"
-                  style={{ backgroundColor: dressCodeColor.bg }}
-                />
-                <span 
-                  className="text-[11px] md:text-sm"
-                  style={{ color: 'var(--text)' }}
-                >
-                  {activity.activity}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+                {activity.time}
+              </span>
+              <div 
+                className="flex-shrink-0 w-1.5 h-1.5 mt-1 rounded-full"
+                style={{ backgroundColor: dressCodeColor.bg }}
+              />
+              <span 
+                className="text-[11px] md:text-sm"
+                style={{ color: 'var(--text)' }}
+              >
+                {activity.activity}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </motion.div>
