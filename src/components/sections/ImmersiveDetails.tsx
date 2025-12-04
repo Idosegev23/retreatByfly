@@ -1,11 +1,18 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 export function ImmersiveDetails() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  
+  const marqueeX = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
 
   const details = [
     {
@@ -17,6 +24,7 @@ export function ImmersiveDetails() {
       ),
       title: "אבו דאבי",
       subtitle: "מלון Rixos 5★",
+      color: "#E87DA0",
     },
     {
       icon: (
@@ -26,6 +34,7 @@ export function ImmersiveDetails() {
       ),
       title: "18-21.02.2026",
       subtitle: "3 לילות / 4 ימים",
+      color: "#2E86AB",
     },
     {
       icon: (
@@ -35,6 +44,7 @@ export function ImmersiveDetails() {
       ),
       title: "Flydubai",
       subtitle: "כולל מזוודה ותיק",
+      color: "#8B5A2B",
     },
     {
       icon: (
@@ -44,26 +54,32 @@ export function ImmersiveDetails() {
       ),
       title: "קבוצה אינטימית",
       subtitle: "נשים בלבד",
+      color: "#C9B8A8",
     },
   ];
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-12 md:py-20 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{ backgroundColor: 'var(--nude-100)' }}
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-nude-50 via-nude-100 to-nude-200/30" />
 
-      {/* Decorative text */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-        <span 
-          className="text-[20vw] font-bold opacity-[0.03] whitespace-nowrap"
-          style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
+      {/* Marquee text - full width with overflow visible */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-visible">
+        <motion.div 
+          className="whitespace-nowrap"
+          style={{ x: marqueeX }}
         >
-          תקווה ורודה
-        </span>
+          <span 
+            className="text-[15vw] md:text-[12vw] font-bold opacity-[0.04]"
+            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
+          >
+            תקווה ורודה ✦ תקווה ורודה ✦ תקווה ורודה
+          </span>
+        </motion.div>
       </div>
 
       {/* Main content */}
@@ -79,13 +95,13 @@ export function ImmersiveDetails() {
               className="text-center"
             >
               <div 
-                className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 flex items-center justify-center rounded-full shadow-soft"
-                style={{ backgroundColor: 'var(--nude-50)', color: 'var(--accent)' }}
+                className="w-14 h-14 md:w-18 md:h-18 mx-auto mb-3 md:mb-4 flex items-center justify-center rounded-2xl shadow-lg"
+                style={{ backgroundColor: item.color, color: 'white' }}
               >
                 {item.icon}
               </div>
               <h3 
-                className="text-base md:text-xl font-semibold mb-0.5"
+                className="text-base md:text-xl font-bold mb-0.5"
                 style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
               >
                 {item.title}
@@ -102,10 +118,10 @@ export function ImmersiveDetails() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-8 md:mt-10 text-center text-xs md:text-sm"
-          style={{ color: 'var(--text-light)' }}
+          className="mt-10 md:mt-12 text-center text-sm md:text-base font-medium"
+          style={{ color: 'var(--accent)' }}
         >
-          חצי פנסיון במלון 5 כוכבים ועוד המון פינוקים ✨
+          ✨ חצי פנסיון במלון 5 כוכבים ועוד המון פינוקים ✨
         </motion.p>
       </div>
     </section>
