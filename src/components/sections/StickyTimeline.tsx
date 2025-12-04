@@ -85,10 +85,13 @@ export function StickyTimeline() {
     <section
       id="schedule"
       ref={containerRef}
-      className="relative"
-      style={{ height: `${timelineData.length * 100}vh` }}
+      className="relative overflow-hidden"
+      style={{ 
+        height: `${timelineData.length * 100}vh`,
+        backgroundColor: 'var(--nude-50)',
+      }}
     >
-      {/* Dynamic background color based on active day */}
+      {/* Dynamic background color based on active day - contained within section */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeDay}
@@ -96,12 +99,18 @@ export function StickyTimeline() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-0 pointer-events-none"
+          className="absolute inset-0 z-0 pointer-events-none"
           style={{ 
             backgroundColor: dressCodeColors[activeDay as keyof typeof dressCodeColors]?.light || 'var(--nude-50)',
           }}
         />
       </AnimatePresence>
+      
+      {/* Bottom gradient for clear separation */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none"
+        style={{ background: 'linear-gradient(to bottom, transparent, var(--nude-100))' }}
+      />
 
       {/* Sticky header - fixed at top with solid background */}
       <div 
@@ -223,12 +232,15 @@ function TimelineDay({ day, setActiveDay, dressCodeColor }: TimelineDayProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.3, 1, 1, 0.3]);
   const scale = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.94, 1, 1, 0.94]);
 
+  // Last day needs extra bottom padding
+  const isLastDay = day.day === 4;
+  
   return (
     <motion.div
       id={`day-${day.day}`}
       ref={dayRef}
       style={{ opacity, scale }}
-      className="min-h-screen flex items-center pt-44 pb-16 md:pt-48 md:pb-20 scroll-mt-44 md:scroll-mt-48"
+      className={`min-h-screen flex items-center pt-44 scroll-mt-44 md:pt-48 md:scroll-mt-48 ${isLastDay ? 'pb-40 md:pb-48' : 'pb-16 md:pb-20'}`}
     >
       <div className="max-w-xl mx-auto px-4 w-full">
         <div 
