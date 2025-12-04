@@ -34,8 +34,8 @@ const timelineData = [
     activities: [
       { time: "08:00-09:00", activity: "ארוחת בוקר" },
       { time: "09:30-10:30", activity: "יוגה / סאונד הילינג" },
-      { time: "11:00-16:00", activity: "זמן חופשי: ספא / צילומים" },
-      { time: "16:00-18:30", activity: "סדנה - הילדה הפנימית" },
+      { time: "11:00-16:00", activity: "זמן חופשי: ספא / צילומי תדמית בחוף" },
+      { time: "16:00-18:30", activity: "סדנת השראה חוויתית - הילדה הפנימית שבי" },
       { time: "18:30-20:30", activity: "ארוחת ערב" },
       { time: "20:00", activity: "שופינג ושחרור" },
     ],
@@ -49,7 +49,7 @@ const timelineData = [
       { time: "08:00-09:00", activity: "ארוחת בוקר" },
       { time: "11:00-14:00", activity: "שייט ביאכטה" },
       { time: "14:00-16:30", activity: "מנוחה בריכה וזמן בנות" },
-      { time: "16:30-18:30", activity: "סדנה בשקיעה" },
+      { time: "16:30-18:30", activity: "סדנה בשקיעה - מגדלור מאיר את הדרך" },
       { time: "19:00-21:00", activity: "קבלת שבת חגיגית" },
       { time: "21:00-23:00", activity: "מסיבת פיג׳מות" },
     ],
@@ -61,7 +61,7 @@ const timelineData = [
     dressCode: "חיוך ורוד",
     activities: [
       { time: "08:30-09:30", activity: "ארוחת בוקר" },
-      { time: "10:00-13:00", activity: "סדנת סיכום + מתנות" },
+      { time: "10:00-13:00", activity: "סדנת סיכום - עפה על עצמי + מתנות" },
       { time: "13:00", activity: "צ׳ק אאוט" },
       { time: "13:00-16:00", activity: "שופינג ומנוחה" },
       { time: "17:00", activity: "יציאה לשדה התעופה" },
@@ -244,11 +244,24 @@ function TimelineDay({ day, setActiveDay, dressCodeColor, isLast }: TimelineDayP
               textShadow: day.day === 3 ? '0 1px 2px rgba(0,0,0,0.3)' : 'none'
             }}
           >
-            יום {day.day} · {day.dressCode}
+            יום {day.day}
+          </div>
+
+          {/* Dress code highlight */}
+          <div 
+            className="absolute -top-3 left-4 md:left-6 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold shadow-md flex items-center gap-1.5"
+            style={{ 
+              backgroundColor: 'white',
+              color: dressCodeColor.bg,
+              border: `2px solid ${dressCodeColor.bg}`,
+            }}
+          >
+            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: dressCodeColor.bg }} />
+            קוד לבוש: {day.dressCode}
           </div>
 
           {/* Header */}
-          <div className="mb-4 mt-2">
+          <div className="mb-4 mt-4">
             <span 
               className="text-[10px] md:text-xs font-semibold"
               style={{ color: dressCodeColor.bg }}
