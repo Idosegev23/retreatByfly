@@ -65,7 +65,7 @@ export function PricingSection() {
               <div className="flex items-baseline gap-1">
                 <span 
                   className="text-4xl md:text-5xl font-bold"
-                  style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--accent)' }}
+                  style={{ color: 'var(--accent)' }}
                 >
                   6,990
                 </span>
@@ -100,7 +100,7 @@ export function PricingSection() {
               <div className="flex items-baseline gap-1">
                 <span 
                   className="text-4xl md:text-5xl font-bold"
-                  style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
+                  style={{ color: 'var(--text)' }}
                 >
                   7,990
                 </span>
