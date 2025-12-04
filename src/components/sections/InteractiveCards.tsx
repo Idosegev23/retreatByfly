@@ -62,20 +62,13 @@ export function InteractiveCards() {
       <div className="relative z-10 max-w-4xl mx-auto px-4">
         {/* Section header */}
         <div className="text-center mb-8 md:mb-12">
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="text-accent text-[10px] md:text-xs font-medium tracking-wider uppercase"
-          >
-            ביחד נוכל
-          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1 }}
-            className="font-cormorant text-2xl md:text-4xl font-semibold text-text mt-2"
+            className="text-2xl md:text-4xl font-semibold"
+            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
           >
-            מה תקבלי מהריטריט
+            ביחד נוכל
           </motion.h2>
         </div>
 
