@@ -46,10 +46,15 @@ export function ParallaxQuote() {
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
         >
           <span style={{ color: 'var(--accent)', fontSize: '1.2em' }}>&ldquo;</span>
-          <span style={{ color: 'var(--accent)' }}>את לא בורחת מהחיים</span> –
+          את לא בורחת מהחיים –
           <span className="block md:inline"> את חוזרת אליהם</span>
           <br />
-          <span className="font-extrabold" style={{ color: 'var(--accent)' }}>מחוברת ועוצמתית יותר</span>
+          <span 
+            className="block text-3xl md:text-5xl lg:text-6xl font-extrabold mt-2 md:mt-4"
+            style={{ color: 'var(--accent)' }}
+          >
+            מחוברת ועוצמתית יותר
+          </span>
           <span style={{ color: 'var(--accent)', fontSize: '1.2em' }}>&rdquo;</span>
         </blockquote>
 

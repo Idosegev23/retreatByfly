@@ -98,7 +98,7 @@ export function StickyTimeline() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           className="absolute inset-0 z-0 pointer-events-none"
           style={{ 
             backgroundColor: dressCodeColors[activeDay as keyof typeof dressCodeColors]?.light || 'var(--nude-50)',
