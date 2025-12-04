@@ -10,46 +10,24 @@ const bentoItems = [
     subtitle: "להעצמה והשראה",
     size: "large",
     image: "/img1.png",
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-      </svg>
-    ),
   },
   {
     title: "זמן לעצמך",
     subtitle: "ספא, בריכה ומנוחה",
     size: "small",
     image: "/img2.png",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
   },
   {
     title: "יציאה מהשגרה",
     subtitle: "שייט וחוויות יוקרתיות",
     size: "small",
     image: "/img3.png",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M3 17L9 11L13 15L21 7" />
-        <path d="M14 7H21V14" />
-      </svg>
-    ),
   },
   {
     title: "טעינה רגשית",
     subtitle: "אוכל טוב, צחוק וחיבור",
     size: "medium",
     image: "/img4.png",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-      </svg>
-    ),
   },
 ];
 
@@ -109,45 +87,32 @@ export function HorizontalJourney() {
                   className="object-cover"
                   sizes={item.size === 'large' ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
                 />
-                {/* Overlay */}
+                {/* Subtle gradient overlay for text readability */}
                 <div 
                   className="absolute inset-0"
                   style={{ 
-                    background: index === 0 
-                      ? 'linear-gradient(135deg, rgba(200, 150, 140, 0.85) 0%, rgba(180, 130, 120, 0.9) 100%)'
-                      : 'linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(253, 250, 247, 0.92) 100%)'
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)'
                   }}
                 />
               </div>
 
-              {/* Content */}
-              <div className="relative z-10 p-5 md:p-6 h-full flex flex-col">
-                {/* Icon */}
-                <div 
-                  className={`mb-3 md:mb-4 ${item.size === 'large' ? 'mb-6' : ''}`}
-                  style={{ color: index === 0 ? 'white' : 'var(--accent)' }}
+              {/* Content - at bottom */}
+              <div className="relative z-10 h-full flex flex-col justify-end p-4 md:p-5">
+                <h3 
+                  className={`font-semibold text-white ${item.size === 'large' ? 'text-xl md:text-2xl' : 'text-sm md:text-base'}`}
+                  style={{ 
+                    fontFamily: 'var(--font-cormorant), Georgia, serif',
+                    textShadow: '0 1px 3px rgba(0,0,0,0.3)',
+                  }}
                 >
-                  {item.icon}
-                </div>
-
-                {/* Text - at bottom for large card */}
-                <div className={item.size === 'large' ? 'mt-auto' : ''}>
-                  <h3 
-                    className={`font-semibold ${item.size === 'large' ? 'text-xl md:text-2xl' : 'text-sm md:text-base'}`}
-                    style={{ 
-                      fontFamily: 'var(--font-cormorant), Georgia, serif',
-                      color: index === 0 ? 'white' : 'var(--text)',
-                    }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p 
-                    className={`mt-1 ${item.size === 'large' ? 'text-sm md:text-base' : 'text-[11px] md:text-xs'}`}
-                    style={{ color: index === 0 ? 'rgba(255,255,255,0.85)' : 'var(--text-light)' }}
-                  >
-                    {item.subtitle}
-                  </p>
-                </div>
+                  {item.title}
+                </h3>
+                <p 
+                  className={`mt-0.5 text-white/85 ${item.size === 'large' ? 'text-sm md:text-base' : 'text-[10px] md:text-xs'}`}
+                  style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
+                >
+                  {item.subtitle}
+                </p>
               </div>
             </motion.div>
           ))}
