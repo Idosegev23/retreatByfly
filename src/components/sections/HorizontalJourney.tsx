@@ -10,24 +10,28 @@ const bentoItems = [
     subtitle: "להעצמה והשראה",
     size: "large",
     image: "/img1.png",
+    imageClass: "object-cover",
   },
   {
     title: "זמן לעצמך",
     subtitle: "ספא, בריכה ומנוחה",
     size: "small",
     image: "/img2.png",
+    imageClass: "object-cover scale-[0.85] object-center",
   },
   {
     title: "יציאה מהשגרה",
     subtitle: "שייט וחוויות יוקרתיות",
     size: "small",
-    image: "/img3.png",
+    image: "/img4.png", // switched
+    imageClass: "object-cover",
   },
   {
     title: "טעינה רגשית",
     subtitle: "אוכל טוב, צחוק וחיבור",
     size: "medium",
-    image: "/img4.png",
+    image: "/img3.png", // switched
+    imageClass: "object-cover",
   },
 ];
 
@@ -84,32 +88,32 @@ export function HorizontalJourney() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className={item.imageClass}
                   sizes={item.size === 'large' ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
                 />
-                {/* Subtle gradient overlay for text readability */}
+                {/* Gradient overlay for text readability */}
                 <div 
                   className="absolute inset-0"
                   style={{ 
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)'
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.5) 100%)'
                   }}
                 />
               </div>
 
-              {/* Content - at bottom */}
-              <div className="relative z-10 h-full flex flex-col justify-end p-4 md:p-5">
+              {/* Content - centered */}
+              <div className="relative z-10 h-full flex flex-col justify-center items-center text-center p-4 md:p-5">
                 <h3 
                   className={`font-semibold text-white ${item.size === 'large' ? 'text-xl md:text-2xl' : 'text-sm md:text-base'}`}
                   style={{ 
                     fontFamily: 'var(--font-cormorant), Georgia, serif',
-                    textShadow: '0 1px 3px rgba(0,0,0,0.3)',
+                    textShadow: '0 2px 8px rgba(0,0,0,0.5)',
                   }}
                 >
                   {item.title}
                 </h3>
                 <p 
-                  className={`mt-0.5 text-white/85 ${item.size === 'large' ? 'text-sm md:text-base' : 'text-[10px] md:text-xs'}`}
-                  style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
+                  className={`mt-1 text-white/90 ${item.size === 'large' ? 'text-sm md:text-base' : 'text-[10px] md:text-xs'}`}
+                  style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
                 >
                   {item.subtitle}
                 </p>
