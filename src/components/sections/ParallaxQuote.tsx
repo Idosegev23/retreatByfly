@@ -18,10 +18,10 @@ export function ParallaxQuote() {
   const line1X = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [100, 0, 0, -100]);
   const line1Opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
   
-  // Second line (מחוברת ועוצמתית) - comes from left with BIG zoom on exit
-  const line2X = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [-100, 0, 0, 100]);
-  const line2Opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.7, 1], [0, 1, 1, 0]);
-  const line2Scale = useTransform(scrollYProgress, [0.1, 0.45, 0.6, 1], [0.8, 1, 1, 1.8]);
+  // Second line (מחוברת ועוצמתית) - comes from left with BIG zoom on exit (starts earlier)
+  const line2X = useTransform(scrollYProgress, [0, 0.35, 0.5, 1], [-100, 0, 0, 80]);
+  const line2Opacity = useTransform(scrollYProgress, [0.1, 0.35, 0.75, 1], [0, 1, 1, 0]);
+  const line2Scale = useTransform(scrollYProgress, [0.1, 0.4, 0.5, 0.85], [0.8, 1, 1.1, 2.2]);
 
   // Pink accent color
   const pinkColor = "#c89696";
