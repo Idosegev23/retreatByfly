@@ -42,15 +42,14 @@ export function ParallaxQuote() {
         className="relative z-10 max-w-4xl mx-auto px-5 text-center"
       >
         <blockquote 
-          className="text-2xl md:text-4xl lg:text-5xl font-bold leading-snug"
+          className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
         >
           <span style={{ color: 'var(--accent)', fontSize: '1.2em' }}>&ldquo;</span>
-          את לא בורחת מהחיים –
-          <span className="block md:inline"> את חוזרת אליהם</span>
+          את לא בורחת מהחיים – את חוזרת אליהם
           <br />
           <span 
-            className="block text-3xl md:text-5xl lg:text-6xl font-extrabold mt-2 md:mt-4"
+            className="inline text-3xl md:text-5xl lg:text-6xl font-extrabold"
             style={{ color: 'var(--accent)' }}
           >
             מחוברת ועוצמתית יותר
