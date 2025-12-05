@@ -119,8 +119,10 @@ export function ClosingSection() {
               </p>
             </div>
             
-            <p className="text-[10px] md:text-xs text-center" style={{ color: 'var(--text-light)', opacity: 0.7 }}>
-              הסדנאות מונחות על ידי מטפלת מוסמכת עם 15 שנות ניסיון
+            <p className="text-xs md:text-sm text-center max-w-md" style={{ color: 'var(--text-light)' }}>
+              הסדנאות מונחות על ידי מטפלת LI-CBT מוסמכת, מאסטר NLP.
+              <br />
+              עם ניסיון של 15 שנים בהובלת תהליכי מנטורינג וקידום נשים בארגונים.
             </p>
           </div>
         </div>
