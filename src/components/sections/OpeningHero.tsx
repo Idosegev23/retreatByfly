@@ -178,27 +178,6 @@ export function OpeningHero() {
           </motion.a>
         </motion.div>
       </motion.div>
-
-      {/* Bottom scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.2 }}
-      >
-        <span 
-          className="text-[9px] md:text-[10px] tracking-[0.15em] uppercase"
-          style={{ color: 'var(--text-light)' }}
-        >
-          גלילה
-        </span>
-        <motion.div
-          className="w-[1px] h-6 md:h-8"
-          style={{ backgroundColor: 'var(--nude-400)' }}
-          animate={{ scaleY: [1, 0.5, 1], originY: 0 }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
     </section>
   );
 }
