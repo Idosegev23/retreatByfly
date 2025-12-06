@@ -20,7 +20,7 @@ export function ByflySection() {
       </div>
 
       <div className="relative z-10 max-w-3xl mx-auto px-5 text-center">
-        {/* Byfly Badge */}
+        {/* Pink Tikva Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -28,7 +28,7 @@ export function ByflySection() {
           className="mb-8"
         >
           <a
-            href="https://www.instagram.com/byfly58/"
+            href="https://www.instagram.com/pinktikva?igsh=MXViOHhuOGdqOHoxeQ=="
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full transition-all hover:scale-105"
@@ -48,7 +48,7 @@ export function ByflySection() {
               className="text-sm font-medium"
               style={{ color: 'var(--text)' }}
             >
-              חוויה נשית עוצמתית – מבית <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Byfly</span>
+              חוויה נשית עוצמתית – <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Pink Tikva</span>
             </span>
           </a>
         </motion.div>
@@ -68,7 +68,16 @@ export function ByflySection() {
             <br className="hidden md:block" />
             חוויה קולינרית והכל במרחב בטוח בהנחיית מאסטרית NLP,
             <br className="hidden md:block" />
-            בארגון מדויק ויוקרתי מבית סוכנות נסיעות <span style={{ fontWeight: 600 }}>Byfly58</span>
+            בארגון מדויק ויוקרתי מבית סוכנות נסיעות{' '}
+            <a 
+              href="https://www.instagram.com/byfly58/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="underline hover:opacity-80 transition-opacity"
+              style={{ fontWeight: 600, color: 'var(--accent)' }}
+            >
+              Byfly58
+            </a>
           </p>
           
           <p 
