@@ -136,7 +136,7 @@ export function OpeningHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.4 }}
         >
-          18-21.02.2026 | אבו דאבי | 3 לילות
+          18-21.02.2026 | אבו דאבי | 4 לילות
         </motion.p>
 
         {/* Hotel info */}

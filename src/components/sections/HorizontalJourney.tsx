@@ -7,7 +7,7 @@ import Image from "next/image";
 const bentoItems = [
   {
     title: "סדנאות חוויתיות",
-    subtitle: "להעצמה והשראה",
+    subtitle: "בהנחיית מנטורית מוסמכת LI-CBT, מאסטר NLP להעצמה והשראה",
     size: "large",
     image: "/img1.png",
     imageClass: "object-cover",

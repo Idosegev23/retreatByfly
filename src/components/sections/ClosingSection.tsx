@@ -56,7 +56,7 @@ export function ClosingSection() {
           className="text-sm md:text-base mb-8"
           style={{ color: 'var(--text-light)' }}
         >
-          4 ימים של חיבור, העצמה והנאה מחכים לך.
+          <span style={{ fontFamily: 'var(--font-heebo), sans-serif' }}>4</span> לילות של חיבור, העצמה והנאה מחכים לך.
         </motion.p>
 
         {/* CTA */}
@@ -119,11 +119,18 @@ export function ClosingSection() {
               </p>
             </div>
             
-            <p className="text-xs md:text-sm text-center max-w-md" style={{ color: 'var(--text-light)' }}>
-              הסדנאות מונחות על ידי מטפלת LI-CBT מוסמכת, מאסטר NLP.
-              <br />
-              עם ניסיון של 15 שנים בהובלת תהליכי מנטורינג וקידום נשים בארגונים.
-            </p>
+            <div 
+              className="text-center max-w-md p-4 rounded-xl"
+              style={{ backgroundColor: 'rgba(232, 125, 160, 0.1)', border: '1px solid var(--accent)' }}
+            >
+              <p className="text-sm md:text-base font-medium" style={{ color: 'var(--text)' }}>
+                הסדנאות מונחות על ידי מטפלת <span style={{ color: 'var(--accent)', fontWeight: 600 }}>LI-CBT</span> מוסמכת, 
+                מאסטר <span style={{ color: 'var(--accent)', fontWeight: 600 }}>NLP</span>.
+              </p>
+              <p className="text-xs md:text-sm mt-1" style={{ color: 'var(--text-light)' }}>
+                עם ניסיון של <span style={{ fontFamily: 'var(--font-heebo), sans-serif' }}>15</span> שנים בהובלת תהליכי מנטורינג וקידום נשים בארגונים.
+              </p>
+            </div>
           </div>
         </div>
       </motion.footer>

@@ -87,7 +87,7 @@ export function StickyTimeline() {
       ref={containerRef}
       className="relative"
       style={{ 
-        height: `${timelineData.length * 100}vh`,
+        height: `${timelineData.length * 80}vh`,
         backgroundColor: 'var(--nude-50)',
       }}
     >
@@ -123,7 +123,7 @@ export function StickyTimeline() {
               className="text-xl md:text-3xl lg:text-4xl font-semibold mt-1"
               style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: 'var(--text)' }}
             >
-              4 ימים של קסם
+              <span style={{ fontFamily: 'var(--font-heebo), sans-serif' }}>4</span> לילות של קסם
             </h2>
           </div>
 

@@ -33,7 +33,7 @@ export function ImmersiveDetails() {
         </svg>
       ),
       title: "18-21.02.2026",
-      subtitle: "3 לילות / 4 ימים מלאים",
+      subtitle: "4 לילות / 4 ימים מלאים",
       color: "#2E86AB",
     },
     {
