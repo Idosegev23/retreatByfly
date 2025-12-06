@@ -43,7 +43,8 @@ export function ImmersiveDetails() {
         </svg>
       ),
       title: "Flydubai",
-      subtitle: "הלוך 10:40 | חזור 20:55",
+      subtitle: "10:40 ← | → 20:55",
+      subtitle2: "כולל טרולי + מזוודה 20 ק״ג",
       color: "#8B5A2B",
     },
     {
@@ -113,6 +114,11 @@ export function ImmersiveDetails() {
               <p className="text-[10px] md:text-xs" style={{ color: 'var(--text-light)' }}>
                 {item.subtitle}
               </p>
+              {item.subtitle2 && (
+                <p className="text-[9px] md:text-[10px] mt-0.5" style={{ color: 'var(--text-light)' }}>
+                  {item.subtitle2}
+                </p>
+              )}
             </motion.div>
           ))}
         </div>
