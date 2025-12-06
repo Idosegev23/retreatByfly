@@ -10,7 +10,7 @@ export function PricingSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-24"
+      className="relative py-16 md:py-24 z-50"
       style={{ backgroundColor: 'var(--nude-50)' }}
     >
       <div className="max-w-4xl mx-auto px-4">

@@ -87,7 +87,7 @@ export function StickyTimeline() {
       ref={containerRef}
       className="relative"
       style={{ 
-        height: `${timelineData.length * 85}vh`,
+        height: `${timelineData.length * 75}vh`,
         backgroundColor: 'var(--nude-50)',
       }}
     >
