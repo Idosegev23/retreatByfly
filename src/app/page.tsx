@@ -1,5 +1,6 @@
 import { OpeningHero } from "@/components/sections/OpeningHero";
 import { HorizontalJourney } from "@/components/sections/HorizontalJourney";
+import { ByflySection } from "@/components/sections/ByflySection";
 import { ParallaxQuote } from "@/components/sections/ParallaxQuote";
 import { WhatWeDoSection } from "@/components/sections/WhatWeDoSection";
 import { InteractiveCards } from "@/components/sections/InteractiveCards";
@@ -17,6 +18,9 @@ export default function Home() {
       
       {/* Horizontal Scroll Section - The Journey */}
       <HorizontalJourney />
+      
+      {/* Byfly Section - Story */}
+      <ByflySection />
       
       {/* Parallax Quote */}
       <ParallaxQuote />
