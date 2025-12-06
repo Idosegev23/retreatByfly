@@ -123,6 +123,22 @@ export function WhatWeDoSection() {
           ))}
         </div>
 
+        {/* Note about guides */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mt-8 md:mt-10 text-center"
+        >
+          <p 
+            className="text-xs md:text-sm flex items-center justify-center gap-2"
+            style={{ color: 'var(--text-light)' }}
+          >
+            <span style={{ color: 'var(--accent)' }}>✔</span>
+            מנחות ומלוות מצוות תקווה ורודה מנתב״ג ועד הנחיתה ארצה
+          </p>
+        </motion.div>
+
         {/* Decorative line */}
         <motion.div
           initial={{ scaleX: 0 }}

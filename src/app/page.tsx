@@ -8,6 +8,7 @@ import { StickyTimeline } from "@/components/sections/StickyTimeline";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { ImmersiveDetails } from "@/components/sections/ImmersiveDetails";
 import { FloatingContact } from "@/components/sections/FloatingContact";
+import { FinePrintSection } from "@/components/sections/FinePrintSection";
 import { ClosingSection } from "@/components/sections/ClosingSection";
 
 export default function Home() {
@@ -42,6 +43,9 @@ export default function Home() {
       
       {/* Contact Form */}
       <FloatingContact />
+      
+      {/* Fine Print - Important Info */}
+      <FinePrintSection />
       
       {/* Closing Experience */}
       <ClosingSection />
