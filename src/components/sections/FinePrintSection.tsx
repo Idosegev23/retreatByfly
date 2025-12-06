@@ -3,10 +3,39 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
+// SVG Icons
+const icons = {
+  notIncluded: (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+    </svg>
+  ),
+  payment: (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+    </svg>
+  ),
+  notes: (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+    </svg>
+  ),
+  flight: (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+    </svg>
+  ),
+  luggage: (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+    </svg>
+  ),
+};
+
 const sections = [
   {
     title: "לא כלול",
-    icon: "🚫",
+    icon: icons.notIncluded,
     items: [
       { text: "ביטוחים*", note: true },
       { text: "הוצאות אישיות" },
@@ -16,7 +45,7 @@ const sections = [
   },
   {
     title: "תשלום",
-    icon: "💳",
+    icon: icons.payment,
     items: [
       { text: "ניתן בתשלומים ללא ריבית או בהעברה בנקאית" },
       { text: "המחיר כולל את כל המיסים והתוספות המתוארות בלו״ז" },
@@ -27,7 +56,7 @@ const sections = [
   },
   {
     title: "הערות נוספות",
-    icon: "📝",
+    icon: icons.notes,
     items: [
       { text: "התכנית והלו״ז נתונים לשינויים ועדכונים" },
       { text: "צוות מנחים ילווה אתכם במהלך החופשה מנתב״ג ועד הנחיתה חזרה" },
@@ -36,7 +65,7 @@ const sections = [
   },
   {
     title: "פרטים חשובים לפני הנסיעה",
-    icon: "✈️",
+    icon: icons.flight,
     items: [
       { text: "מפגש עם הצוות: יתקיים בזום כמה ימים לפני הנסיעה" },
       { text: "מייל פרטי החבילה: 5 ימים לפני היציאה תקבלו מייל עם כרטיסי הטיסה" },
@@ -46,7 +75,7 @@ const sections = [
   },
   {
     title: "צ׳ק-אין והעלאת ציוד",
-    icon: "🧳",
+    icon: icons.luggage,
     items: [
       { text: "הצ׳ק-אין יבוצע יחד בשדה התעופה (דרכון בלבד)" },
       { text: "בחירת מושב / תוספת משקל: ניתן לבצע רק בשדה התעופה, בתוספת תשלום" },
@@ -108,7 +137,7 @@ export function FinePrintSection() {
                 className="w-full flex items-center justify-between p-4 text-right transition-colors hover:bg-nude-50"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-base">{section.icon}</span>
+                  <span style={{ color: 'var(--accent)' }}>{section.icon}</span>
                   <span 
                     className="text-sm md:text-base font-medium"
                     style={{ color: 'var(--text)' }}
@@ -183,10 +212,9 @@ export function FinePrintSection() {
           className="text-center text-[10px] md:text-xs mt-6"
           style={{ color: 'var(--text-light)', opacity: 0.7 }}
         >
-          לשאלות נוספות אנחנו כאן עבורכן 💗
+          לשאלות נוספות אנחנו כאן עבורכן
         </motion.p>
       </div>
     </section>
   );
 }
-

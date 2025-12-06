@@ -125,7 +125,7 @@ export function ImmersiveDetails() {
           className="mt-10 md:mt-12 text-center text-sm md:text-base font-medium"
           style={{ color: 'var(--accent)' }}
         >
-          ✨ חצי פנסיון במלון 5 כוכבים ועוד המון פינוקים ✨
+          חצי פנסיון במלון 5 כוכבים ועוד המון פינוקים
         </motion.p>
       </div>
     </section>
