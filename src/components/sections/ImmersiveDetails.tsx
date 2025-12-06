@@ -43,7 +43,7 @@ export function ImmersiveDetails() {
         </svg>
       ),
       title: "Flydubai",
-      subtitle: "כולל מזוודה וטרולי",
+      subtitle: "הלוך 10:40 | חזור 20:55",
       color: "#8B5A2B",
     },
     {

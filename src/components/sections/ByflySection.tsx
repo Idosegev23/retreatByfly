@@ -66,9 +66,9 @@ export function ByflySection() {
           >
             אם את מחפשת יציאה מהשגרה, מנוחה ופינוקים, חיבור לעצמך, תוכן מחזק,
             <br className="hidden md:block" />
-            חוויה קולינרית והכל במרחב בטוח בהנחיית מאסטרית NLP
+            חוויה קולינרית והכל במרחב בטוח בהנחיית מאסטרית NLP,
             <br className="hidden md:block" />
-            בארגון סוכנות נסיעות <span style={{ fontWeight: 600 }}>Byfly</span>
+            בארגון מדויק ויוקרתי מבית סוכנות נסיעות <span style={{ fontWeight: 600 }}>Byfly58</span>
           </p>
           
           <p 
