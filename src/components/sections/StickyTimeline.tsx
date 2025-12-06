@@ -85,9 +85,8 @@ export function StickyTimeline() {
     <section
       id="schedule"
       ref={containerRef}
-      className="relative"
+      className="relative pb-16"
       style={{ 
-        height: `${timelineData.length * 75}vh`,
         backgroundColor: 'var(--nude-50)',
       }}
     >
@@ -206,24 +205,24 @@ function TimelineDay({ day, setActiveDay, dressCodeColor, isLast }: TimelineDayP
 
   const { scrollYProgress } = useScroll({
     target: dayRef,
-    offset: ["start center", "end center"],
+    offset: ["start 0.7", "end 0.3"],
   });
 
   scrollYProgress.on("change", (value) => {
-    if (value > 0 && value < 1) {
+    if (value > 0.1 && value < 0.9) {
       setActiveDay(day.day);
     }
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.3, 1, 1, 0.3]);
-  const scale = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.94, 1, 1, 0.94]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.5]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.96, 1, 1, 0.96]);
 
   return (
     <motion.div
       id={`day-${day.day}`}
       ref={dayRef}
       style={{ opacity, scale }}
-      className={`min-h-screen flex items-center pt-40 scroll-mt-36 md:pt-44 md:scroll-mt-40 pb-12 md:pb-16`}
+      className={`flex items-center pt-32 scroll-mt-32 md:pt-36 md:scroll-mt-36 pb-8 md:pb-12`}
     >
       <div className="max-w-xl mx-auto px-4 w-full">
         <div 
