@@ -32,7 +32,7 @@ export function ImmersiveDetails() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
       ),
-      title: "18-21.02.2026",
+      title: "11-14.03.2026",
       subtitle: "4 לילות / 4 ימים מלאים",
       color: "#2E86AB",
     },
@@ -131,7 +131,7 @@ export function ImmersiveDetails() {
           className="mt-10 md:mt-12 text-center text-sm md:text-base font-medium"
           style={{ color: 'var(--accent)' }}
         >
-          חצי פנסיון במלון 5 כוכבים ועוד המון פינוקים
+          אולטרה הכל כלול במלון 5 כוכבים ועוד המון פינוקים
         </motion.p>
       </div>
     </section>
